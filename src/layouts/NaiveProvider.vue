@@ -32,6 +32,9 @@ const themeOverrides = {
     paddingSmall: '0 12px',
     paddingMedium: '0 16px',
     paddingLarge: '0 20px'
+  },
+  Menu: {
+    itemHeight: '46px'
   }
   // TODO: CUSTOMIZE OTHER COMPONENTS
 }

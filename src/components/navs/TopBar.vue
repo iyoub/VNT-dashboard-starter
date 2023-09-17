@@ -1,5 +1,5 @@
 <template>
-  <nav class="p-4 shadow-mlg backdrop-blur-xl bg-white/80 sticky top-0 right-0 left-0">
+  <nav class="p-4 shadow-lg backdrop-blur-xl bg-white/80 sticky top-0 right-0 left-0">
     <div class="flex items-center justify-between">
       <RouterLink :to="{ name: 'HomeView' }">
         <n-button type="primary" quaternary class="!font-semibold"> Logo </n-button>
