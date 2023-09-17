@@ -5,12 +5,12 @@
     <div class="flex gap-3 mr-3">
       <!-- themes -->
       <n-button-group>
-        <n-button class="!px-3" :tertiary="theme === 'dark'" type="primary" @click="handleThemeChange('light')">
+        <n-button class="!px-3" :tertiary="isThemeDark" type="primary" @click="handleThemeChange">
           <template #icon>
             <n-icon><Sunny /></n-icon>
           </template>
         </n-button>
-        <n-button class="!px-3" :tertiary="theme === 'light'" type="primary" @click="handleThemeChange('dark')">
+        <n-button class="!px-3" :tertiary="!isThemeDark" type="primary" @click="handleThemeChange">
           <template #icon>
             <n-icon><Moon /></n-icon>
           </template>
@@ -40,25 +40,26 @@
       <n-popover trigger="click" width="200">
         <template #trigger>
           <n-button quaternary icon-placement="right" class="!px-1">
-            <n-avatar round size="small" src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg" class="mr-1" />
+            <n-avatar round size="small" :src="getUser.avatar" class="mr-1" />
             <n-icon :depth="4" size="large">
               <ChevronDown />
             </n-icon>
           </n-button>
         </template>
+        <template #header>
+          <p class="text-gray-400 text-sm text-center">@{{ getUser.username }}</p>
+        </template>
         <ul>
-          <p class="text-center block text-gray-400 pb-2">@johndoe</p>
-          <hr class="border-gray-100" />
           <li>
-            <RouterLink :to="{ name: 'SettingsView' }" class="popover-item block"> Settings </RouterLink>
-          </li>
-          <li>
-            <RouterLink :to="{ name: 'SettingsView' }" class="popover-item block"> Settings </RouterLink>
+            <RouterLink :to="{ name: 'SettingsView' }" class="popover-item block !mn-0"> Profile </RouterLink>
           </li>
           <li>
             <RouterLink :to="{ name: 'SettingsView' }" class="popover-item block"> Settings </RouterLink>
           </li>
         </ul>
+        <template #footer>
+          <n-button text block class="!my-1"> Log Out </n-button>
+        </template>
       </n-popover>
     </div>
   </nav>
@@ -66,13 +67,28 @@
 
 <script setup>
 import { ChevronDown, Moon, NotificationsOutline, Sunny } from '@vicons/ionicons5'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useUserStore } from '@/stores/user'
+import { storeToRefs } from 'pinia'
+import { darkTheme } from 'naive-ui'
+import { useAppConfig } from '@/stores/app-config'
 
-const theme = ref('light')
+const userStore = useUserStore()
+const { getUser } = storeToRefs(userStore)
+const appConfigStore = useAppConfig()
+const { getTheme } = storeToRefs(appConfigStore)
 
-const handleThemeChange = value => {
-  theme.value = value
-  document.documentElement.setAttribute('data-theme', value)
+const isThemeDark = computed(() => {
+  return getTheme.value?.name === darkTheme.name
+})
+
+const handleThemeChange = () => {
+  if (isThemeDark.value) {
+    appConfigStore.setTheme({ theme: null })
+    return
+  }
+
+  appConfigStore.setTheme({ theme: darkTheme })
 }
 
 const notifications = ref([

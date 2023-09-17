@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider :theme-overrides="themeOverrides">
+  <n-config-provider :theme-overrides="themeOverrides" :theme="getTheme">
     <n-dialog-provider>
       <n-notification-provider>
         <!-- see https://www.naiveui.com/en-US/os-theme/components/message > MessageProvider Props -->
@@ -12,6 +12,12 @@
 </template>
 
 <script setup>
+import { useAppConfig } from '@/stores/app-config'
+import { storeToRefs } from 'pinia'
+
+const appConfigStore = useAppConfig()
+const { getTheme } = storeToRefs(appConfigStore)
+
 const themeOverrides = {
   common: {
     primaryColor: '#007cfeFF'
