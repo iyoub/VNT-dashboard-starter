@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider>
+  <n-config-provider :theme-overrides="themeOverrides">
     <n-dialog-provider>
       <n-notification-provider>
         <!-- see https://www.naiveui.com/en-US/os-theme/components/message > MessageProvider Props -->
@@ -11,4 +11,28 @@
   </n-config-provider>
 </template>
 
-<script setup></script>
+<script setup>
+const themeOverrides = {
+  common: {
+    primaryColor: '#007cfeFF'
+  },
+  Button: {
+    colorPrimary: '#007cfeFF',
+    colorHoverPrimary: '#006DE0FF',
+    colorPressedPrimary: '#005EC1FF',
+    colorFocusPrimary: '#0058B5FF',
+    colorDisabledPrimary: '#87C1FEFF',
+    rippleColorPrimary: '#0058B5FF',
+    borderPrimary: '#0058B5FF',
+    borderRadiusLarge: '6px',
+    borderRadiusMedium: '6px',
+    borderRadiusSmall: '4px',
+    borderRadiusTiny: '4px',
+    paddingTiny: '0 8px',
+    paddingSmall: '0 12px',
+    paddingMedium: '0 16px',
+    paddingLarge: '0 20px'
+  }
+  // TODO: CUSTOMIZE OTHER COMPONENTS
+}
+</script>
