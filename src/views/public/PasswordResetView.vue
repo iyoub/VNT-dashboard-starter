@@ -14,6 +14,13 @@
 
       <n-button @click="handleValidation" type="primary" size="large" strong block class="!mt-4"> Send Email </n-button>
     </n-form>
+
+    <p class="text-gray-500 text-center text-[12px] mt-4">
+      Already have an account?
+      <RouterLink :to="{ name: 'LoginView' }">
+        <n-button type="primary" text> Login </n-button>
+      </RouterLink>
+    </p>
   </div>
 </template>
 
