@@ -1,5 +1,5 @@
 <template>
-  <main class="bg-slate-100 min-h-screen">
+  <main class="bg-gradient-to-b from-slate-100/80 from-40% via-slate-400/20 via-60% to-slate-700/20 to-90% min-h-screen">
     <TopBar />
     <div class="container mx-auto py-12 px-6">
       <RouterView />

@@ -64,6 +64,14 @@ export const AUTH_ROUTES = [
     meta: {
       title: 'Sign Up'
     }
+  },
+  {
+    path: '/password-reset',
+    name: 'PasswordResetView',
+    component: () => import('@/views/public/PasswordResetView.vue'),
+    meta: {
+      title: 'Password Reset'
+    }
   }
 ]
 
