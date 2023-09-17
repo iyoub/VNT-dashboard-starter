@@ -1,3 +1,5 @@
+import { GridOutline, SettingsOutline } from '@vicons/ionicons5'
+
 const PUBLIC_ROUTES = [
   {
     path: '/',
@@ -43,7 +45,21 @@ export const PRIVATE_ROUTES = [
     name: 'DashboardView',
     component: () => import('@/views/private/DashboardView.vue'),
     meta: {
-      title: 'Dashboard'
+      title: 'Dashboard',
+      showOnSidebar: true,
+      label: 'Dashboard',
+      icon: GridOutline
+    }
+  },
+  {
+    path: '/settings',
+    name: 'SettingsView',
+    component: () => import('@/views/private/SettingsView.vue'),
+    meta: {
+      title: 'Settings',
+      showOnSidebar: true,
+      label: 'Settings',
+      icon: SettingsOutline
     }
   }
 ]
