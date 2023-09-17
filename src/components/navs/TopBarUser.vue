@@ -20,7 +20,7 @@
       <n-popover trigger="click">
         <template #trigger>
           <n-badge :value="3" :max="10">
-            <n-button class="!px-3" type="primary" tertiary>
+            <n-button class="!px-2" type="primary" tertiary>
               <template #icon>
                 <n-icon><NotificationsOutline /></n-icon>
               </template>
@@ -29,10 +29,34 @@
         </template>
         <ul>
           <li v-for="notification in notifications" :key="notification.id">
-            <div class="px-2 py-2 rounded hover:bg-gray-100 hover:shadow mb-2 cursor-pointer">
+            <div class="popover-item">
               <b>{{ notification.title }}</b>
               <p class="text-sm text-neutral-400">{{ notification.description }}</p>
             </div>
+          </li>
+        </ul>
+      </n-popover>
+      <!-- notification -->
+      <n-popover trigger="click" width="200">
+        <template #trigger>
+          <n-button quaternary icon-placement="right" class="!px-1">
+            <n-avatar round size="small" src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg" class="mr-1" />
+            <n-icon :depth="4" size="large">
+              <ChevronDown />
+            </n-icon>
+          </n-button>
+        </template>
+        <ul>
+          <p class="text-center block text-gray-400 pb-2">@johndoe</p>
+          <hr class="border-gray-100" />
+          <li>
+            <RouterLink :to="{ name: 'SettingsView' }" class="popover-item block"> Settings </RouterLink>
+          </li>
+          <li>
+            <RouterLink :to="{ name: 'SettingsView' }" class="popover-item block"> Settings </RouterLink>
+          </li>
+          <li>
+            <RouterLink :to="{ name: 'SettingsView' }" class="popover-item block"> Settings </RouterLink>
           </li>
         </ul>
       </n-popover>
@@ -41,7 +65,7 @@
 </template>
 
 <script setup>
-import { Moon, NotificationsOutline, Sunny } from '@vicons/ionicons5'
+import { ChevronDown, Moon, NotificationsOutline, Sunny } from '@vicons/ionicons5'
 import { ref } from 'vue'
 
 const theme = ref('light')
@@ -69,3 +93,9 @@ const notifications = ref([
   }
 ])
 </script>
+
+<style>
+.popover-item {
+  @apply px-2 py-2 rounded hover:bg-gray-100 hover:shadow mb-2 cursor-pointer;
+}
+</style>

@@ -20,10 +20,11 @@
           :collapsed-icon-width="sidebarProps.collapsedIconWidth"
         />
       </n-layout-sider>
-      <!-- main view -->
       <n-layout class="px-8 py-2" :native-scrollbar="false">
+        <!-- bar info -->
         <TopBarUser />
 
+        <!-- main view -->
         <RouterView />
       </n-layout>
     </n-layout>
