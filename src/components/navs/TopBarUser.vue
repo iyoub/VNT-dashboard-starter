@@ -1,21 +1,10 @@
 <template>
-  <nav class="border-b border-gray-100 flex justify-between align-center py-4 px-2">
-    <h1 class="text-xl text-neutral-500 font-semibold">{{ $route.meta.label }}</h1>
+  <nav class="border-b border-gray-100 dark:border-gray-100/20 flex justify-between align-center py-4 px-2">
+    <h1 class="text-xl text-gray-500 font-semibold">{{ $route.meta.label }}</h1>
 
     <div class="flex gap-3 mr-3">
       <!-- themes -->
-      <n-button-group>
-        <n-button class="!px-3" :tertiary="isThemeDark" type="primary" @click="handleThemeChange">
-          <template #icon>
-            <n-icon><Sunny /></n-icon>
-          </template>
-        </n-button>
-        <n-button class="!px-3" :tertiary="!isThemeDark" type="primary" @click="handleThemeChange">
-          <template #icon>
-            <n-icon><Moon /></n-icon>
-          </template>
-        </n-button>
-      </n-button-group>
+      <ThemeSwitchButton />
       <!-- notification -->
       <n-popover trigger="click">
         <template #trigger>
@@ -47,7 +36,7 @@
           </n-button>
         </template>
         <template #header>
-          <p class="text-gray-400 text-sm text-center">@{{ getUser.username }}</p>
+          <p class="text-gray-500 text-sm text-center">@{{ getUser.username }}</p>
         </template>
         <ul>
           <li>
@@ -66,30 +55,14 @@
 </template>
 
 <script setup>
-import { ChevronDown, Moon, NotificationsOutline, Sunny } from '@vicons/ionicons5'
-import { computed, ref } from 'vue'
+import ThemeSwitchButton from '@/components/buttons/ThemeSwitchButton.vue'
+import { ChevronDown, NotificationsOutline } from '@vicons/ionicons5'
+import { ref } from 'vue'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
-import { darkTheme } from 'naive-ui'
-import { useAppConfig } from '@/stores/app-config'
 
 const userStore = useUserStore()
 const { getUser } = storeToRefs(userStore)
-const appConfigStore = useAppConfig()
-const { getTheme } = storeToRefs(appConfigStore)
-
-const isThemeDark = computed(() => {
-  return getTheme.value?.name === darkTheme.name
-})
-
-const handleThemeChange = () => {
-  if (isThemeDark.value) {
-    appConfigStore.setTheme({ theme: null })
-    return
-  }
-
-  appConfigStore.setTheme({ theme: darkTheme })
-}
 
 const notifications = ref([
   {
@@ -112,6 +85,6 @@ const notifications = ref([
 
 <style>
 .popover-item {
-  @apply px-2 py-2 rounded hover:bg-gray-100 hover:shadow mb-2 cursor-pointer;
+  @apply px-2 py-2 rounded hover:bg-gray-100 hover:shadow mb-2 cursor-pointer dark:hover:bg-gray-800;
 }
 </style>

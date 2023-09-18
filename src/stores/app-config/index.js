@@ -6,7 +6,7 @@ export const useAppConfig = defineStore('app-config', {
       name: 'App Name',
       description: 'App Description'
     },
-    theme: localStorage.getItem('theme') || 'light'
+    theme: JSON.parse(localStorage.getItem('theme')) || null
   }),
 
   getters: {
@@ -21,11 +21,11 @@ export const useAppConfig = defineStore('app-config', {
   actions: {
     setTheme({ theme }) {
       if (theme) {
-        localStorage.setItem('theme', theme)
         document.documentElement.classList.add('dark')
+        localStorage.setItem('theme', JSON.stringify(theme))
       } else {
-        localStorage.removeItem('theme')
         document.documentElement.classList.remove('dark')
+        localStorage.removeItem('theme')
       }
 
       this.theme = theme

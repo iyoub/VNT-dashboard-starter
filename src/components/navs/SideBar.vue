@@ -1,9 +1,9 @@
 <template>
   <aside>
     <RouterLink :to="{ name: 'HomeView' }" class="flex justify-center">
-      <n-button type="primary" quaternary class="!font-semibold"> Logo </n-button>
+      <n-button type="primary" quaternary class="!font-semibold !text-xl"> Logo </n-button>
     </RouterLink>
-    <hr class="my-4 mx-3 border-gray-100" />
+    <hr class="my-4 mx-3 border-gray-100 dark:border-gray-100/20" />
     <n-menu
       :collapsed="props.collapsed"
       :collapsed-width="props.collapsedWidth"
@@ -88,8 +88,9 @@ const sidebarOptions = PRIVATE_ROUTES.map(route => ({
   background-color: var(--n-item-text-color-active);
 }
 .n-layout-toggle-button {
-  width: 28px !important;
+  width: 30px !important;
   height: 36px !important;
   border-radius: 0 !important;
+  font-size: 24px !important;
 }
 </style>
