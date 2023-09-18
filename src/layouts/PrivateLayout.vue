@@ -37,7 +37,7 @@ import SideBar from '@/components/navs/SideBar.vue'
 import TopBarUser from '@/components/navs/TopBarUser.vue'
 
 const sidebarProps = ref({
-  width: 260,
+  width: 240,
   collapsed: false,
   collapsedWidth: 64,
   collapsedIconWidth: 20

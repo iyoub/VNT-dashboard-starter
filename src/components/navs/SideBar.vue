@@ -88,9 +88,10 @@ const sidebarOptions = PRIVATE_ROUTES.map(route => ({
   background-color: var(--n-item-text-color-active);
 }
 .n-layout-toggle-button {
-  width: 30px !important;
-  height: 36px !important;
-  border-radius: 0 !important;
-  font-size: 24px !important;
+  width: 28px !important;
+  height: 34px !important;
+  border-radius: 6px !important;
+  font-size: 20px !important;
+  top: 60px !important;
 }
 </style>

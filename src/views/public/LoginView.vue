@@ -29,7 +29,7 @@
           </n-input>
 
           <RouterLink :to="{ name: 'PasswordResetView' }" tabindex="-1">
-            <n-button type="primary" text class="!font-semibold !w-full !justify-end"> Forgot Password? </n-button>
+            <n-button tabindex="-1" type="primary" text class="!font-semibold !w-full !justify-end"> Forgot Password? </n-button>
           </RouterLink>
         </div>
       </n-form-item>
@@ -50,8 +50,12 @@
 import { useMessage } from 'naive-ui'
 import { ref } from 'vue'
 import { AtSharp, LockClosedOutline } from '@vicons/ionicons5'
+import { useUserStore } from '@/stores/user'
+import { useRouter } from 'vue-router'
 
+const userStore = useUserStore()
 const message = useMessage()
+const router = useRouter()
 
 const formRef = ref(null)
 const logingForm = ref({
@@ -86,7 +90,21 @@ function handleValidation(e) {
     }
 
     // form validation passed
-    message.success('Form validation passed')
+    handleLogin()
   })
+}
+
+const handleLogin = async () => {
+  const { error, success } = await userStore.useLogin({ user: logingForm.value })
+
+  if (error) {
+    message.error(`Failed to login. ${error}`)
+    return
+  }
+
+  if (success) {
+    message.success(`Welcome back, ${logingForm.value.username}!`)
+    router.push({ name: 'DashboardView' })
+  }
 }
 </script>

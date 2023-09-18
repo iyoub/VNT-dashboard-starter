@@ -29,7 +29,7 @@
       <n-popover trigger="click" width="200">
         <template #trigger>
           <n-button quaternary icon-placement="right" class="!px-1">
-            <n-avatar round size="small" :src="getUser.avatar" class="mr-1" />
+            <n-avatar round :src="getUser.avatar" class="mr-1" />
             <n-icon :depth="4" size="large">
               <ChevronDown />
             </n-icon>

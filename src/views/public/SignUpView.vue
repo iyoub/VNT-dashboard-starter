@@ -64,11 +64,15 @@ import { ref } from 'vue'
 import { AtSharp, PersonOutline, LockClosedOutline } from '@vicons/ionicons5'
 import { useAppConfig } from '@/stores/app-config'
 import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 
 const appConfig = useAppConfig()
 const { getAppInfo } = storeToRefs(appConfig)
+const userStore = useUserStore()
 
 const message = useMessage()
+const router = useRouter()
 
 const formRef = ref(null)
 const signupForm = ref({
@@ -119,7 +123,20 @@ function handleValidation(e) {
     }
 
     // form validation passed
-    message.success('Form validation passed')
+    handleSignup()
   })
+}
+
+// TODOl CONTINUE ADDING THE SING UP FUNCTIONALITY
+const handleSignup = async () => {
+  // const { error, success } = await userStore. ({ user: signupForm.value })
+  // if (error) {
+  //   message.error(`Failed to signup. ${error}`)
+  //   return
+  // }
+  // if (success) {
+  //   message.success(`Welcome aboard, ${signupForm.value.username}!`)
+  //   router.push({ name: 'DashboardView' })
+  // }
 }
 </script>
